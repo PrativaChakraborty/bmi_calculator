@@ -21,211 +21,40 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        elevation: 8,
         title: Center(
           child: Text(
             'BMI CALCULATOR',
-            style: TextStyle(color: textColor, fontSize: 18),
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(height: 12),
-            Expanded(
-              flex: 4,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            flex: 4,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   //Age_card
-                  Expanded(
-                    child: Card(
-                      elevation: 5,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              "Age(in years)",
-                              style: GoogleFonts.lato(
-                                textStyle: TextStyle(
-                                    color: textColor,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w900),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              age.toString(),
-                              style: GoogleFonts.mukta(
-                                textStyle: TextStyle(
-                                    color: textColor,
-                                    fontSize: 60,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    age--;
-                                    setState(() {});
-                                  },
-                                  child: Container(
-                                    height: 50,
-                                    width: 50,
-                                    decoration: BoxDecoration(
-                                      color: Colors.blueGrey[50],
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        "-",
-                                        style: TextStyle(
-                                            fontSize: 40, color: mainColor),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    age++;
-                                    setState(() {});
-                                  },
-                                  child: Container(
-                                    height: 50,
-                                    width: 50,
-                                    decoration: BoxDecoration(
-                                      color: Colors.blueGrey[50],
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        "+",
-                                        style: TextStyle(
-                                            fontSize: 40, color: mainColor),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 12,
-                  ),
+                  buildInputCard("Age(in years)", age, true),
+
                   //Weight_card
-                  Expanded(
-                    child: Card(
-                      elevation: 5,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              "Weight(in kg)",
-                              style: GoogleFonts.lato(
-                                textStyle: TextStyle(
-                                    color: textColor,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w900),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              weight.toString(),
-                              style: GoogleFonts.mukta(
-                                textStyle: TextStyle(
-                                    color: textColor,
-                                    fontSize: 60,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    weight--;
-                                    setState(() {});
-                                  },
-                                  child: Container(
-                                    height: 50,
-                                    width: 50,
-                                    decoration: BoxDecoration(
-                                      color: Colors.blueGrey[50],
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        "-",
-                                        style: TextStyle(
-                                            fontSize: 40, color: mainColor),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    weight++;
-                                    print(weight);
-                                    setState(() {});
-                                  },
-                                  child: Container(
-                                    height: 50,
-                                    width: 50,
-                                    decoration: BoxDecoration(
-                                      color: Colors.blueGrey[50],
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        "+",
-                                        style: TextStyle(
-                                            fontSize: 40, color: mainColor),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  )
+                  buildInputCard("Weight(in kg)", weight, false),
                 ],
               ),
             ),
-            SizedBox(height: 12),
-            //Height_card
-            Expanded(
-              flex: 3,
+          ),
+
+          //Height_card
+          Expanded(
+            flex: 3,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Card(
+                color: cardColor,
                 elevation: 5,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
@@ -234,17 +63,17 @@ class _HomepageState extends State<Homepage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text(
-                        "Height",
-                        style: GoogleFonts.lato(
-                          textStyle: TextStyle(
-                              color: textColor,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w900),
+                      Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Text(
+                          "Height",
+                          style: GoogleFonts.lato(
+                            textStyle: TextStyle(
+                                // color: textColor,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w900),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 25,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -255,15 +84,15 @@ class _HomepageState extends State<Homepage> {
                             height.toInt().toString(),
                             style: GoogleFonts.mukta(
                               textStyle: TextStyle(
-                                  color: textColor,
+                                  // color: textColor,
                                   fontSize: 45,
-                                  fontWeight: FontWeight.w700),
+                                  fontWeight: FontWeight.w500),
                             ),
                           ),
                           Text(
                             ' cm',
                             style: GoogleFonts.lato(
-                                color: textColor,
+                                // color: textColor,
                                 fontSize: 18,
                                 fontWeight: FontWeight.w900),
                           ),
@@ -279,7 +108,6 @@ class _HomepageState extends State<Homepage> {
                           onChanged: (h) {
                             setState(() {
                               height = h;
-                              print(h);
                             });
                           })
                     ],
@@ -287,54 +115,53 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
             ),
-            SizedBox(height: 12),
-            //Gender_card
-            Expanded(
-              flex: 3,
+          ),
+
+          //Gender_card
+          Expanded(
+            flex: 3,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Card(
                 elevation: 5,
+                color: cardColor,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
                         "Gender",
                         style: GoogleFonts.lato(
                           textStyle: TextStyle(
-                              color: textColor,
+                              // color: textColor,
                               fontSize: 18,
                               fontWeight: FontWeight.w900),
                         ),
                       ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Center(
                             child: Text(
                               "I'm",
                               style: GoogleFonts.mukta(
                                 textStyle: TextStyle(
-                                    color: textColor,
-                                    fontSize: 60,
-                                    fontWeight: FontWeight.w700),
+                                    // color: textColor,
+                                    fontSize: 50,
+                                    fontWeight: FontWeight.w500),
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(30),
-                            child: Text(
-                              "Female",
-                              style: GoogleFonts.lato(
-                                textStyle: TextStyle(
-                                    color: textColor,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w900),
-                              ),
+                          Text(
+                            "Female",
+                            style: GoogleFonts.lato(
+                              textStyle: TextStyle(
+                                  //color: textColor,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w900),
                             ),
                           ),
                           CupertinoSwitch(
@@ -344,18 +171,15 @@ class _HomepageState extends State<Homepage> {
                                   isMale = b;
                                 });
                               },
-                              activeColor: lightColor,
-                              trackColor: lightColor),
-                          Padding(
-                            padding: const EdgeInsets.all(30),
-                            child: Text(
-                              "Male",
-                              style: GoogleFonts.lato(
-                                textStyle: TextStyle(
-                                    color: textColor,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w900),
-                              ),
+                              activeColor: mainColor, //lightColor,
+                              trackColor: mainColor),
+                          Text(
+                            "Male",
+                            style: GoogleFonts.lato(
+                              textStyle: TextStyle(
+                                  //color: textColor,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w900),
                             ),
                           ),
                         ],
@@ -365,40 +189,130 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 12,
-            ),
-            //Calculate button
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => Result(
-                        height: height,
-                        weight: weight.toDouble(),
-                      ),
-                    ),
-                  );
-                },
-                child: Container(
-                  height: 50,
-                  width: 160,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      color: mainColor,
-                      borderRadius: BorderRadius.circular(30)),
-                  child: Center(
-                    child: Text(
-                      "CALCULATE",
-                      style: a.copyWith(fontSize: 16),
-                    ),
+          ),
+
+          //Calculate button
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => Result(
+                    height: height,
+                    weight: weight.toDouble(),
+                  ),
+                ),
+              );
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                color: mainColor,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Center(
+                  child: Text(
+                    "CALCULATE",
+                    style: a.copyWith(fontSize: 16),
                   ),
                 ),
               ),
-            )
-          ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Expanded buildInputCard(String title, int value, bool isAge) {
+    // print("value 1st : $value");
+    return Expanded(
+      child: Card(
+        color: cardColor,
+        elevation: 5,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                title,
+                style: GoogleFonts.lato(
+                  textStyle: TextStyle(
+                      // color: textColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              Text(
+                value.toString(),
+                style: GoogleFonts.mukta(
+                  textStyle: TextStyle(
+                      // color: textColor,
+                      fontSize: 60,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      if (isAge)
+                        age--;
+                      else
+                        weight--;
+
+                      // print("value 2nd : $value");
+                      setState(() {});
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        color: mainColor,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Text(
+                          "-",
+                          style: TextStyle(
+                            fontSize: 40,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      if (isAge)
+                        age++;
+                      else
+                        weight++;
+                      setState(() {});
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        color: mainColor,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Text(
+                          "+",
+                          style: TextStyle(
+                            fontSize: 40, //color: mainColor
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -407,9 +321,10 @@ class _HomepageState extends State<Homepage> {
 
 TextStyle a = TextStyle(
     letterSpacing: 1.5,
-    color: Colors.white,
+    // color: Colors.white,
     fontWeight: FontWeight.bold,
     fontSize: 16);
 Color mainColor = Color(0xff673AB7);
 Color textColor = Colors.black54;
-Color lightColor = Color(0xffB9A1D6);
+Color lightColor = Color(0xffFBEAFF);
+Color cardColor = Color(0xff1D1F33);
